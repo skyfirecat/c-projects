@@ -2,11 +2,17 @@
 #include <limits>
 void program1()
 {
-    unsigned int x, y, s;
+    int x, y, s;
     std::cout << "\nSum of two numbers. \nEnter 1st number: ";
     std::cin >> x;
     std::cout << "\nEnter 2st number: ";
     std::cin >> y;
+    s = x + y;
+    if (x < 1 || y < 1)
+    {
+        std::cout << "\nNot natural numbers.";
+        return;
+    }
     if (std::cin.fail())
     {
         std::cout << "\nInput error.";
@@ -14,18 +20,19 @@ void program1()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (x < 1 || y < 1)
+    if ((std::cin.good() && INT_MAX - x > y) )
     {
-        std::cout << "\nNot natural numbers.";
-        return;
+        std::cout << x << " + " << y << " = " << s;
     }
-    s = x + y;
-    std::cout << x << " + " << y << " = " << s;
+    else
+    {
+        std::cout << "\nSorry, result is too great";
+    }
 }
 
 void program2()
 {
-    unsigned int a, b;
+    int a, b;
     std::cout << "\nEnter two numbers to compare them. \nEnter first number: ";
     std::cin >> a;
     std::cout << "\nEnter second number: ";
@@ -35,11 +42,6 @@ void program2()
         std::cout << "\nInput error.";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        return;
-    }
-    if (a < 1 || b < 1)
-    {
-        std::cout << "\nNot natural numbers.";
         return;
     }
     if (a > b)
@@ -58,7 +60,7 @@ void program2()
 
 void program3()
 {
-    unsigned int a, b, c, max;
+    int a, b, c, max;
     std::cout << "\nLooking for a maximum in three numbers.\nEnter first number: ";
     std::cin >> a;
     std::cout << "\nEnter second number: ";
@@ -72,9 +74,9 @@ void program3()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (a < 1 || b < 1 || c < 1)
+    if (a == b && b == c)
     {
-        std::cout << "\nNot natural numbers.";
+        std::cout << "\nAll numbers are equal.";
         return;
     }
     if (a > b && a > c)
@@ -94,7 +96,7 @@ void program3()
 
 void program4()
 {
-    unsigned int a, b, c, d, min1, min2, max;
+    int a, b, c, d, min1, min2, max;
     std::cout << "\nGetting maximum from two minimums of two numbers.\nEnter 1st number: ";
     std::cin >> a;
     std::cout << "\nEnter 2nd number: ";
@@ -108,11 +110,6 @@ void program4()
         std::cout << "\nInput error.";
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        return;
-    }
-    if (a < 1 || b < 1 || c < 1 || d < 1)
-    {
-        std::cout << "\nNot natural numbers.";
         return;
     }
     if (a > b)
@@ -151,7 +148,7 @@ void program4()
 }
 void program5()
 {
-    unsigned int a;
+    int a;
     std::cout << "\nChecking if the number is double-digit and even.\nEnter your number: ";
     std::cin >> a;
     if (std::cin.fail())
@@ -161,13 +158,13 @@ void program5()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (a > 10 && a < 100 && a % 2 == 0)
+    if ((a >= 10 && a < 100 && a % 2 == 0) || (a <= -10 && a >-100 && a % 2 == 0) )
     {
-        std::cout << "\nNumber is double-digit and even";
+        std::cout << "\nYes";
     }
     else
     {
-        std::cout << "\nNumber doesn't meet the requirements";
+        std::cout << "\nNo";
     }
 }
 
