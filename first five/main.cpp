@@ -168,6 +168,200 @@ void program5()
     }
 }
 
+void program6()
+{
+    int a,a1,a2,a3,a4,b;
+    std::cout << "\nChecking if entered digit exists in entered number";
+    std::cout << "\nEnter your digit: ";
+    std::cin >> a;
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    std::cout << "\nEnter your number (not greater than 4 digit number): ";
+    std::cin >> b;
+    b = abs(b);
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (b > 9999 || b < 1000)
+    {
+        std::cout << "\nYour number should be 4 digit number";
+        return;
+    }
+    if (a > 9 || a < 0)
+    {
+        std::cout << "\nYour digit should be digit.";
+        return;
+    }
+    a1 = b / 1000;
+    a2 = b % 10;
+    a3 = b / 100 % 10;
+    a4 = b / 10 % 10;
+    if (a == a1 || a == a2 || a == a3 || a == a4)
+    {
+        std::cout << "\nYes";
+    }
+    else
+    {
+        std::cout << "\nNo";
+    }
+
+}
+void program7()
+{
+    int num,a,b,c;
+    std::cout << "\nEnter three digit number: ";
+    std::cin >> num;
+    num = abs(num);
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (num > 999 || num < 100)
+    {
+        std::cout << "Number should be a three digit number";
+        return;
+    }
+    a = num / 100;
+    b = num % 10;
+    c = num / 10 % 10;
+    if ((a + b + c) % 2 == 0)
+    {
+        std::cout << "\nYes";
+    }
+    else
+    {
+        std::cout << "\nNo";
+    }
+}
+
+void program8()
+{
+    int d1, d2 ,d3, num;
+    std::cout << "\nEnter your three digit number: ";
+    std::cin >> num;
+    num = abs(num);
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (num > 999 || num < 100)
+    {
+        std::cout << "Number should be a three digit number";
+        return;
+    }
+    d1 = num / 100;
+    d2 = num % 10;
+    d3 = num / 10 %  10;
+    if (d1 == d2 && d2 == d3)
+    {
+        std::cout << "\n3";
+    }
+    else if (d1 == d2 || d2 == d3 || d3 == d1)
+    {
+        std::cout << "\n2";
+    }
+    else
+    {
+        std::cout << "\n0";
+    }
+}
+
+void program9()
+{
+    int num, d1, d2, d3, d4;
+    std::cout << "\nEnter your four digit number: ";
+    std::cin >> num;
+    num = abs(num);
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (num > 9999 || num < 1000)
+    {
+        std::cout << "Number should be a four digit number";
+        return;
+    }
+    d1 = num / 1000;
+    d2 = num / 100 % 10;
+    d3 = num / 10 % 10;
+    d4 = num % 10;
+    if (num == (d4 * 1000 + d3 * 100 + d2 * 10 + d1))
+    {
+        std::cout << "\nYes";
+    }
+    else
+    {
+        std::cout << "\nNo";
+    }
+}
+void program10()
+{
+    int num, d1, d2, d3, d4;
+    std::cout << "\nEnter four digit number: ";
+    std::cin >> num;
+    num = abs(num);
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (num > 9999 || num < 1000)
+    {
+        std::cout << "Number should be a four digit number";
+        return;
+    }
+    d1 = num / 1000;
+    d2 = num / 100 % 10;
+    d3 = num / 10 % 10;
+    d4 = num % 10;
+    if (d1 < d2 && d2 < d3 && d3 < d4)
+    {
+        std::cout << "\nIncreasing";
+    }
+    else if (d1 == d2 && d2 == d3 && d3 == d4)
+    {
+        std::cout << "\nConstant";
+    }
+    else if (d1 > d2 && d2 > d3 && d3 > d4)
+    {
+        std::cout << "\nDecreasing";
+    }
+    else if (d1 <= d2 && d2 <= d3 && d3 <= d4)
+    {
+        std::cout << "\nNon-decreasing";
+    }
+    else if (d1 >= d2 && d2 >= d3 && d3 >= d4)
+    {
+        std::cout << "\nNon-increasing";
+    }
+    else
+    {
+        std::cout << "\nNo";
+    }
+}
+
+// Пройдёт ли кирпич со сторонами a,b,c через прямоугольное отверстие со сторонами x,y. Стороны перпендикулярны граням. При равенстве сторон не проходит. (int32) Задача 11
+
 int main()
 {
     bool answer;
