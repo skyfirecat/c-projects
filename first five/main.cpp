@@ -360,7 +360,41 @@ void program10()
     }
 }
 
-// Пройдёт ли кирпич со сторонами a,b,c через прямоугольное отверстие со сторонами x,y. Стороны перпендикулярны граням. При равенстве сторон не проходит. (int32) Задача 11
+void program11()
+{
+    int a, b, c, x, y;
+    std::cout << "Enter height, width, length: ";
+    std::cin >> a >> b >> c;
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    std::cout << "Enter values of ur hole in the wall: ";
+    std::cin >> x >> y;
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (a <= 0 || b <= 0 || c <= 0 || x <= 0 || y <= 0)
+    {
+        std::cout << "Values should be positive";
+        return;
+    }
+    if (b < x && a < y || c < x && b < y || a < x && c < y || b < y && a < x || c < y && b < x || a < y && c < x)
+    {
+        std::cout << "Yes";
+    }
+    else
+    {
+        std::cout << "No";
+    }
+}
 
 int main()
 {
@@ -371,6 +405,12 @@ int main()
     //   program3();
     //   program4();
     //   program5();
+    //   program6();
+    //   program7();
+    //   program8();
+    //   program9();
+    //   program10();
+    //   program11();
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
