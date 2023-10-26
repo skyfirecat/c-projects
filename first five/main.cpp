@@ -1,5 +1,6 @@
 #include <iostream>
 #include <limits>
+#include <cmath>
 void program1()
 {
     int x, y, s;
@@ -396,6 +397,134 @@ void program11()
     }
 }
 
+void program12()
+{
+    int a,b,c;
+    std::cout << "\nEnter sides of triangle: ";
+    std::cin >> a >> b >> c;
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (a <= 0 || b <= 0 || c <= 0)
+    {
+        std::cout << "Not natural numbers.";
+        return;
+    }
+    if (a + b <= c || b + c <= a || a + c <= b)
+    {
+        std::cout << "\nSorry, you can't build triangle with these sides.";
+        return;
+    }
+    else
+    {
+        std::cout << "\nYes";
+    }
+    if (a == b && a == c)
+    {
+        std::cout << "\nYour triangle is equilateral.";
+    }
+    else
+    {
+        if (a != b && b != c && c != a)
+        {
+            std::cout << "\nYour triangle is versatile";
+        }
+        else
+        {
+            std::cout << "\nYour triangle is isosceles.";
+        }
+    }
+    if (a*a + b*b == c*c || b*b + c*c == a*a || a*a + c*c == b*b)
+    {
+        std::cout << "\nYour triangle is also rectangular.";
+    }
+}
+
+void program13()
+{
+    int a,b,c;
+    double x1,x2,d;
+    std::cout << "\nLet's solve the equation f(x) = ax^2 + bx + c = 0";
+    std::cout << "\nEnter a, b and c.";
+    std::cin >> a >> b >> c;
+    if (std::cin.fail())
+    {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (a == 0 || b == 0 || c == 0)
+    {
+        std::cout << "Please enter valid numbers";
+        return;
+    }
+    d = b*b - 4*a*c;
+    std::cout << "d = " << d;
+    if (d >= 0)
+    {
+        x1 = (-b + sqrt(d))/(2*a);
+        x2 = (-b - sqrt(d))/(2*a);
+        std::cout << "\nf(" << x1 << ") = " << a << "*" << x1 << "*" << x1 << "+" << b << "*" << x1 << "+" << c << " = " << a*x1*x1 + b*x1 + c;
+        std::cout << "\nf(" << x2 << ") = " << a << "*" << x2 << "*" << x2 << "+" << b << "*" << x2 << "+" << c << " = " << a*x2*x2 + b*x2 + c;
+    }
+    else
+    {
+        std::cout << "\nThere's no real roots.";
+    }
+}
+
+void program14() {
+    int a;
+    std::cout << "\nChecking if entered year is a leap year from range [1600;2100]. Enter your number: ";
+    std::cin >> a;
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (a < 1600 || a > 2100) {
+        std::cout << "Please enter number from range [1600;2100].";
+        return;
+    }
+    if (a % 100 == 0 && a % 400 != 0) {
+        std::cout << "\n" << a << " is not a leap year.";
+        return;
+    } else if (a % 4 == 0) {
+        std::cout << "\n" << a << " is a leap year.";
+    } else {
+        std::cout << "\n" << a << " is not a leap year.";
+    }
+}
+    void program15()
+    {
+        int a, c, d;
+        double b;
+        std::cout << "Converting inches to metric system, enter value of inches to convert: ";
+        std::cin >> a;
+        if (std::cin.fail()) {
+            std::cout << "\nInput error.";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            return;
+        }
+        if (a <= 0)
+        {
+            std::cout << "Amount of inches should be natural number.";
+            return;
+        }
+        b = a * 25.4;
+        c = b / 10;
+        d = c / 100;
+        b = b - c * 10;
+        c = c - d * 100;
+        std::cout << "\n" << a << " inch(es) = " << d << "m " << c << "cm "<< b << "mm";
+    }
 int main()
 {
     bool answer;
@@ -411,6 +540,10 @@ int main()
     //   program9();
     //   program10();
     //   program11();
+    //   program12();
+    //   program13();
+    //   program14();
+    //   program15();
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
