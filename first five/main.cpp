@@ -21,7 +21,7 @@ void program1()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if ((std::cin.good() && INT_MAX - x > y) )
+    if ((std::cin.good() && INT_MAX - x > y))
     {
         std::cout << x << " + " << y << " = " << s;
     }
@@ -159,7 +159,7 @@ void program5()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if ((a >= 10 && a < 100 && a % 2 == 0) || (a <= -10 && a >-100 && a % 2 == 0) )
+    if ((a >= 10 && a < 100 && a % 2 == 0) || (a <= -10 && a > -100 && a % 2 == 0))
     {
         std::cout << "\nYes";
     }
@@ -171,7 +171,7 @@ void program5()
 
 void program6()
 {
-    int a,a1,a2,a3,a4,b;
+    int a, a1, a2, a3, a4, b;
     std::cout << "\nChecking if entered digit exists in entered number";
     std::cout << "\nEnter your digit: ";
     std::cin >> a;
@@ -218,7 +218,7 @@ void program6()
 }
 void program7()
 {
-    int num,a,b,c;
+    int num, a, b, c;
     std::cout << "\nEnter three digit number: ";
     std::cin >> num;
     num = abs(num);
@@ -249,7 +249,7 @@ void program7()
 
 void program8()
 {
-    int d1, d2 ,d3, num;
+    int d1, d2, d3, num;
     std::cout << "\nEnter your three digit number: ";
     std::cin >> num;
     num = abs(num);
@@ -267,7 +267,7 @@ void program8()
     }
     d1 = num / 100;
     d2 = num % 10;
-    d3 = num / 10 %  10;
+    d3 = num / 10 % 10;
     if (d1 == d2 && d2 == d3)
     {
         std::cout << "\n3";
@@ -399,7 +399,7 @@ void program11()
 
 void program12()
 {
-    int a,b,c;
+    int a, b, c;
     std::cout << "\nEnter sides of triangle: ";
     std::cin >> a >> b >> c;
     if (std::cin.fail())
@@ -438,7 +438,7 @@ void program12()
             std::cout << "\nYour triangle is isosceles.";
         }
     }
-    if (a*a + b*b == c*c || b*b + c*c == a*a || a*a + c*c == b*b)
+    if (a * a + b * b == c * c || b * b + c * c == a * a || a * a + c * c == b * b)
     {
         std::cout << "\nYour triangle is also rectangular.";
     }
@@ -446,8 +446,8 @@ void program12()
 
 void program13()
 {
-    int a,b,c;
-    double x1,x2,d;
+    int a, b, c;
+    double x1, x2, d;
     std::cout << "\nLet's solve the equation f(x) = ax^2 + bx + c = 0";
     std::cout << "\nEnter a, b and c.";
     std::cin >> a >> b >> c;
@@ -458,19 +458,21 @@ void program13()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (a == 0 || b == 0 || c == 0)
+    if (a == 0)
     {
         std::cout << "Please enter valid numbers";
         return;
     }
-    d = b*b - 4*a*c;
+    d = b * b - 4 * a * c;
     std::cout << "d = " << d;
     if (d >= 0)
     {
-        x1 = (-b + sqrt(d))/(2*a);
-        x2 = (-b - sqrt(d))/(2*a);
-        std::cout << "\nf(" << x1 << ") = " << a << "*" << x1 << "*" << x1 << "+" << b << "*" << x1 << "+" << c << " = " << a*x1*x1 + b*x1 + c;
-        std::cout << "\nf(" << x2 << ") = " << a << "*" << x2 << "*" << x2 << "+" << b << "*" << x2 << "+" << c << " = " << a*x2*x2 + b*x2 + c;
+        x1 = (-b + sqrt(d)) / (2 * a);
+        x2 = (-b - sqrt(d)) / (2 * a);
+        std::cout << "\nx1 = " << x1;
+        std::cout << "\nx2 = " << x2;
+        std::cout << "\nf(" << x1 << ") = " << a << "*" << x1 << "*" << x1 << "+" << b << "*" << x1 << "+" << c << " = " << (a * (x1 * x1)) + (b * x1) + c;
+        std::cout << "\nf(" << x2 << ") = " << a << "*" << x2 << "*" << x2 << "+" << b << "*" << x2 << "+" << c << " = " << (a * (x2 * x2)) + (b * x2) + c;
     }
     else
     {
@@ -480,7 +482,7 @@ void program13()
 
 void program14() {
     int a;
-    std::cout << "\nChecking if entered year is a leap year from range [1600;2100]. Enter your number: ";
+    std::cout << "Checking if entered year is a leap year from range [1600;2100]. Enter your number: ";
     std::cin >> a;
     if (std::cin.fail()) {
         std::cout << "\nInput error.";
@@ -488,43 +490,49 @@ void program14() {
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (a < 1600 || a > 2100) {
+    if (a < 1600 || a > 2100) 
+    {
         std::cout << "Please enter number from range [1600;2100].";
         return;
     }
-    if (a % 100 == 0 && a % 400 != 0) {
+    if (a % 100 == 0 && a % 400 != 0) 
+    {
         std::cout << "\n" << a << " is not a leap year.";
         return;
-    } else if (a % 4 == 0) {
+    }
+    else if (a % 4 == 0) 
+    {
         std::cout << "\n" << a << " is a leap year.";
-    } else {
+    }
+    else 
+    {
         std::cout << "\n" << a << " is not a leap year.";
     }
 }
-    void program15()
-    {
-        int a, c, d;
-        double b;
-        std::cout << "Converting inches to metric system, enter value of inches to convert: ";
-        std::cin >> a;
-        if (std::cin.fail()) {
-            std::cout << "\nInput error.";
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            return;
-        }
-        if (a <= 0)
-        {
-            std::cout << "Amount of inches should be natural number.";
-            return;
-        }
-        b = a * 25.4;
-        c = b / 10;
-        d = c / 100;
-        b = b - c * 10;
-        c = c - d * 100;
-        std::cout << "\n" << a << " inch(es) = " << d << "m " << c << "cm "<< b << "mm";
+void program15()
+{
+    int a, c, d;
+    double b;
+    std::cout << "Converting inches to metric system, enter value of inches to convert: ";
+    std::cin >> a;
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
     }
+    if (a <= 0)
+    {
+        std::cout << "Amount of inches should be natural number.";
+        return;
+    }
+    b = a * 25.4;
+    c = b / 10;
+    d = c / 100;
+    b = b - c * 10;
+    c = c - d * 100;
+    std::cout << "\n" << a << " inch(es) = " << d << "m " << c << "cm " << b << "mm";
+}
 int main()
 {
     bool answer;
