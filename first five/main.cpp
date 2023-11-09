@@ -533,6 +533,130 @@ void program15()
     c = c - d * 100;
     std::cout << "\n" << a << " inch(es) = " << d << "m " << c << "cm " << b << "mm";
 }
+
+void program16()
+{
+    std::cout << "Enter current hours, minutes and seconds: ";
+    int h, m, s;
+    std::cin >> h >> m >> s;
+    std::cout << "\nEnter amount of time that should pass (hours, minutes, seconds): ";
+    int x, y, z;
+    std::cin >> x >> y >> z;
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        return;
+    } // Нужно ли делать две проверки на первый ввод и второй?
+    if (h <= 0 || m <= 0 || s <= 0 || x <= 0 || y <= 0 || z <= 0)
+    {
+        std::cout << "Please, enter valid numbers.";
+        return;
+    }
+    else if (h > 24 || m > 60 || s > 60)
+    {
+        std::cout << "Please, enter valid numbers.";
+        return;
+    }
+    int s1, m1, h1, d;
+    s1 = (s + z) % 60;
+    m1 = ((s + z) / 60 + y + m) % 60;
+    h1 = (h + (m + y) / 60 + x) % 24;
+    d = (h + (m + y) / 60 + x) / 24;
+    std::cout << "\nAfter " << d << " day(s) it's currently: " << h1 << " hour(s), " << m1 << " minute(s), " << s1 << " second(s).";
+}
+
+void program17()
+{
+    std::cout << "Enter start time and end time.";
+    int h, m, s, h1, m1, s1;
+    std::cin >> h >> m >> s >> h1 >> m1 >> s1;
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (h <= 0 || m <= 0 || s <= 0 || h1 <= 0 || m1 <= 0 || s1 <= 0)
+    {
+        std::cout << "Please, enter valid numbers.";
+        return;
+    }
+    else if (h > 24 || m > 60 || s > 60 || h1 > 24 || m1 > 60 || s1 > 60)
+    {
+        std::cout << "Please, enter valid numbers.";
+        return;
+    }
+    int temp1, temp2, temp3;
+    temp1 = h * 3600 + m * 60 + s;
+    temp2 = h1 * 3600 + m1 * 60 + s1;
+    if (temp2 > temp1)
+    {
+        temp3 = temp2 - temp1;
+        h = temp3 / 3600;
+        m = (temp3 % 3600) / 60;
+        s = (temp3 % 3600) % 60;
+        std::cout << "It's been " << h << " hour(s) " << m << " minute(s) " << s << " second(s)";
+    }
+    else if (temp2 < temp1)
+    {
+        temp3 = 86400 - (temp1 - temp2);
+        h = temp3 / 3600;
+        m = temp3 % 3600 / 60;
+        s = temp3 % 3600 % 60;
+        std::cout << "It's been " << h << " hour(s) " << m << " minute(s) " << s << " second(s)";
+    }
+    else
+    {
+        std::cout << "\nOne full day has passed.";
+    }
+}
+
+void program18()
+{
+    std::cout << "Enter your measures from 1 to 5 (1 - km, 2 - m, 3 - dm, 4 - cm, 5 - mm): ";
+    int x;
+    std::cin >> x;
+    std::cout << "\nEnter a value of ur measure: ";
+    int y;
+    std::cin >> y;
+    if (y < 0)
+    {
+        std::cout << "\nValue should be positive (or equal to 0)";
+        return 0;
+    }
+    double a;
+    if (x == 1)
+    {
+        a = y * 1000;
+        std::cout << a << " metr(es).";
+    }
+    else if (x == 2)
+    {
+        a = y * 1;
+        std::cout << a << " metr(es).";
+    }
+    else if (x == 3)
+    {
+        a = y * 0.1;
+        std::cout << a << " metr(es).";
+    }
+    else if (x == 4)
+    {
+        a = y * 0.01;
+        std::cout << a << " metr(es).";
+    }
+    else if (x == 5)
+    {
+        a = y * 0.001;
+        std::cout << a << " metr(es).";
+    }
+    else
+    {
+        std::cout << "Input error.";
+        return;
+    }
+}
 int main()
 {
     bool answer;
@@ -552,6 +676,9 @@ int main()
     //   program13();
     //   program14();
     //   program15();
+    //   program16();
+    //   program17();
+    //   program18();
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
