@@ -545,15 +545,10 @@ void program16()
     if (std::cin.fail()) {
         std::cout << "\nInput error.";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-        return;
-    } // Нужно ли делать две проверки на первый ввод и второй?
-    if (h <= 0 || m <= 0 || s <= 0 || x <= 0 || y <= 0 || z <= 0)
-    {
-        std::cout << "Please, enter valid numbers.";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    else if (h > 24 || m > 60 || s > 60)
+    if (h < 0 || m < 0 || s < 0 || x < 0 || y < 0 || z < 0 || h > 23 || m > 59 || s > 59)
     {
         std::cout << "Please, enter valid numbers.";
         return;
@@ -561,9 +556,9 @@ void program16()
     int s1, m1, h1, d;
     s1 = (s + z) % 60;
     m1 = ((s + z) / 60 + y + m) % 60;
-    h1 = (h + (m + y) / 60 + x) % 24;
+    h1 = (h + ((s + z) / 60 + y + m) / 60 + x) % 24;
     d = (h + (m + y) / 60 + x) / 24;
-    std::cout << "\nAfter " << d << " day(s) it's currently: " << h1 << " hour(s), " << m1 << " minute(s), " << s1 << " second(s).";
+    std::cout << "\nAfter " << d << " day(s) it's currently: " << h1 << ":" << m1 << ":" << s1 << "";
 }
 
 void program17()
@@ -577,12 +572,7 @@ void program17()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     }
-    if (h <= 0 || m <= 0 || s <= 0 || h1 <= 0 || m1 <= 0 || s1 <= 0)
-    {
-        std::cout << "Please, enter valid numbers.";
-        return;
-    }
-    else if (h > 24 || m > 60 || s > 60 || h1 > 24 || m1 > 60 || s1 > 60)
+    if (h < 0 || m < 0 || s < 0 || h1 < 0 || m1 < 0 || s1 < 0 || h >= 24 || m >= 60 || s >= 60 || h1 >= 24 || m1 >= 60 || s1 >= 60)
     {
         std::cout << "Please, enter valid numbers.";
         return;
@@ -617,44 +607,84 @@ void program18()
     std::cout << "Enter your measures from 1 to 5 (1 - km, 2 - m, 3 - dm, 4 - cm, 5 - mm): ";
     int x;
     std::cin >> x;
+    if (x < 1 || x > 5)
+    {
+        std::cout << "Enter valid number. (from 1 to 5)";
+        return;
+    }
     std::cout << "\nEnter a value of ur measure: ";
-    int y;
+    double y;
     std::cin >> y;
     if (y < 0)
     {
         std::cout << "\nValue should be positive (or equal to 0)";
-        return 0;
+        return;
+    }
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
     }
     double a;
     if (x == 1)
     {
         a = y * 1000;
-        std::cout << a << " metr(es).";
+        std::cout << y << " kilometer(s) = " << a << " meter(s).";
     }
     else if (x == 2)
     {
         a = y * 1;
-        std::cout << a << " metr(es).";
+        std::cout << y << " meter(s) = " << a << " meter(s).";
     }
     else if (x == 3)
     {
         a = y * 0.1;
-        std::cout << a << " metr(es).";
+        std::cout << y << " decimeter(s) = " << a << " meter(s).";
     }
     else if (x == 4)
     {
         a = y * 0.01;
-        std::cout << a << " metr(es).";
+        std::cout << y << " centimeter(s) = " << a << " meter(s).";
     }
     else if (x == 5)
     {
         a = y * 0.001;
-        std::cout << a << " metr(es).";
+        std::cout << y << " millimeter(s) = " << a << " meter(s).";
     }
-    else
+}
+
+void program19()
+{
+    std::cout << "Enter amount of years (let, goda, god) from 1 to 200: ";
+    int n;
+    std::cin >> n;
+    if (std::cin.fail()) {
+        std::cout << "\nInput error.";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        return;
+    }
+    if (n <= 0 || n >= 201)
     {
         std::cout << "Input error.";
         return;
+    }
+    if (n % 100 >= 11 && n % 100 <= 14)
+    {
+        std::cout << "Emu " << n << " let.";
+    }
+    else if (n % 10 == 0 || n % 10 >= 5 && n % 10 <= 9)
+    {
+        std::cout << "Emu " << n << " let.";
+    }
+    else if (n % 10 == 1)
+    {
+        std::cout << "Emu " << n << " god.";
+    }
+    else
+    {
+        std::cout << "Emu " << n << " goda.";
     }
 }
 int main()
@@ -679,6 +709,7 @@ int main()
     //   program16();
     //   program17();
     //   program18();
+    //   program19();    
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
