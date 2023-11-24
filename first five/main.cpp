@@ -1,6 +1,7 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
+#include <iomanip>
 void program1()
 {
     int x, y, s;
@@ -545,7 +546,7 @@ void program16()
     if (std::cin.fail()) {
         std::cout << "\nInput error.";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         return;
     } // Нужно ли делать две проверки на первый ввод и второй?
     if (h <= 0 || m <= 0 || s <= 0 || x <= 0 || y <= 0 || z <= 0)
@@ -684,6 +685,11 @@ void program20()
     }
     else if (c == '/')
     {
+        if (b == 0)
+        {
+            std::cout << "Input error.";
+            return;
+        }
         res = double(a) / b;
         std::cout << a << " / " << b << " = " << res;
     }
@@ -701,18 +707,19 @@ void program21()
     int counter = 0;
     std::cin >> a;
     a = abs(a);
-    while (a > 0)
+    do
     {
         counter++;
         a = a / 10;
-    }
+    } 
+    while (a > 0);
     std::cout << "Amount of digits in your number = " << counter;
 }
 
 void program22()
 {
     std::cout << "Enter starting fund = ";
-    int k;
+    double k;
     std::cin >> k;
     std::cout << "Enter monthly income in percentage: ";
     int p;
@@ -730,7 +737,7 @@ void program22()
     {
         k = k + k * ((double)p / 100);
         m++;
-        std::cout << "\nSum in " << m << " month = " << k;
+        std::cout << "\nSum in " << m << " month = " << std::fixed << std::showpoint << std::setprecision(2) << k;
     }
     std::cout << "\nIn " << m << " month(s) you'll reach your goal.";
 }
@@ -747,39 +754,28 @@ void program23()
             counter++;
         }
         prev = curr;
-    } 
-    while (curr != 0);
+    } while (curr != 0);
     std::cout << "You changed znak " << counter << " times";
 }
 
 void program24()
 {
     srand((int)time(NULL));
-    int i;
-    double s1 = 0, s2 = 0, s3 = 0;
-    for (i = 0; i < 10; i++)
+    int i, r;
+    double s1;
+    for (int j = 1; j <= 3; j++)
     {
-        std::cout << rand() << " ";
-        s1 = s1 + rand();
+        s1 = 0;
+        for (i = 0; i < 10; i++)
+        {
+            r = rand()%10;
+            std::cout << r << " ";
+            s1 = s1 + r;
+        }
+        s1 = s1 / 10.0;
+        std::cout << "\nAvg in " << j << " seq = " << s1;
+        std::cout << "\n";
     }
-    s1 = s1 / 10.0;
-    std::cout << "\nAvg in first seq = " << s1;
-    std::cout << "\n";
-    for (i = 0; i < 10; i++)
-    {
-        std::cout << rand() << " ";
-        s2 = s2 + rand();
-    }
-    s2 = s2 / 10.0;
-    std::cout << "\nAvg in second seq = " << s2;
-    std::cout << "\n";
-    for (i = 0; i < 10; i++)
-    {
-        std::cout << rand() << " ";
-        s3 = s3 + rand();
-    }
-    s3 = s3 / 10.0;
-    std::cout << "\nAvg in third seq = " << s3;
 }
 
 void program25()
@@ -792,23 +788,12 @@ void program25()
         std::cout << "Please enter valid number.";
         return;
     }
-    for (int i = 100; i <= 999 ; i++)
+    for (int i = 100; i <= 999; i++)
     {
         int a, b, c;
         a = i / 100;
         b = i / 10 % 10;
         c = i % 10;
-        if (a + b + c < n)
-        {
-            std::cout << "\n" << i;
-        }
-    }
-    for (int i = -999; i <= -100; i++)
-    {
-        int a, b, c;
-        a = abs(i) / 100;
-        b = abs(i) / 10 % 10;
-        c = abs(i) % 10;
         if (a + b + c < n)
         {
             std::cout << "\n" << i;
