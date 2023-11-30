@@ -801,6 +801,206 @@ void program25()
     }
 }
 
+void program26()
+{
+    for (int i = 100; i <= 999; i++)
+    {
+        int a, b, c;
+        a = i / 100;
+        b = i / 10 % 10;
+        c = i % 10;
+        if (a == b && a == c)
+        {
+            continue;
+        }
+        else
+        {
+            std::cout << "\n" << i;
+        }
+    }
+}
+
+void program27()
+{
+    std::cout << "Enter chislitel' and znamenatel': ";
+    int a, b;
+    std::cin >> a >> b;
+    if (a < 0 || b < 0)
+    {
+        std::cout << "Not natural numbers.";
+        return;
+    }
+    int min = 0;
+    if (a < b)
+    {
+        min = a;
+    }
+    else
+    {
+        min = b;
+    }
+    for (int i = min; i > 0; i--)
+    {
+        if (a % i == 0 && b % i == 0)
+        {
+            std::cout << a << "/" << b << "=" << a / i << "/" << b / i;
+            break;
+        }
+    }
+}
+
+void program28()
+{
+    std::cout << "Enter natural number: ";
+    int a, x;
+    std::cin >> a;
+    if (a < 0)
+    {
+        std::cout << "Enter natural number.";
+        return;
+    }
+    for (int i = 0; i <= 9; i++)
+    {
+        bool flag = true;
+        x = a;
+        while (x != 0)
+        {
+            if (x % 10 == i)
+            {
+                flag = false;
+                break;
+            }
+            x = x / 10;
+        }
+        if (flag == true)
+        {
+            std::cout << "\n" << i;
+        }
+    }
+}
+
+void program29()
+{
+    for (int i = 0; i <= 7; i++)
+    {
+        for (int j = 0; j <= 7; j++)
+        {
+            if ((i + j) % 2 == 0)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+}
+
+void program30()
+{
+    std::cout << "Enter your number: ";
+    int n;
+    std::cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            std::cout << "*";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n"; // Для разделения задач между собой
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (i == 0 || i == n - 1 || j == 0 || j == n - 1)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (i >= j)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            if (i <= j)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = n; j > 0; j--)
+        {
+            if (i + 1 <= j)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = n; j > 0; j--)
+        {
+            if (i + 1 >= j)
+            {
+                std::cout << "*";
+            }
+            else
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+    for (int i = 0; i < 2*n; i++)
+    {
+        for (int j = 0; j < 2*n; j++)
+        {
+        }
+        std::cout << "\n";
+    }
+}
+
 int main()
 {
     bool answer;
@@ -833,7 +1033,7 @@ int main()
     //   program27();
     //   program28();
     //   program29();
-    //   program30();
+       program30();
     //   program31();
     //   program32();
 
