@@ -1,7 +1,9 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
-#include <iomanip>
+#include <time.h>
+#include <string>
+
 void program1()
 {
     int x, y, s;
@@ -546,7 +548,7 @@ void program16()
     if (std::cin.fail()) {
         std::cout << "\nInput error.";
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
         return;
     } // Нужно ли делать две проверки на первый ввод и второй?
     if (h <= 0 || m <= 0 || s <= 0 || x <= 0 || y <= 0 || z <= 0)
@@ -685,11 +687,6 @@ void program20()
     }
     else if (c == '/')
     {
-        if (b == 0)
-        {
-            std::cout << "Input error.";
-            return;
-        }
         res = double(a) / b;
         std::cout << a << " / " << b << " = " << res;
     }
@@ -707,19 +704,18 @@ void program21()
     int counter = 0;
     std::cin >> a;
     a = abs(a);
-    do
+    while (a > 0)
     {
         counter++;
         a = a / 10;
-    } 
-    while (a > 0);
+    }
     std::cout << "Amount of digits in your number = " << counter;
 }
 
 void program22()
 {
     std::cout << "Enter starting fund = ";
-    double k;
+    int k;
     std::cin >> k;
     std::cout << "Enter monthly income in percentage: ";
     int p;
@@ -737,7 +733,7 @@ void program22()
     {
         k = k + k * ((double)p / 100);
         m++;
-        std::cout << "\nSum in " << m << " month = " << std::fixed << std::showpoint << std::setprecision(2) << k;
+        std::cout << "\nSum in " << m << " month = " << k;
     }
     std::cout << "\nIn " << m << " month(s) you'll reach your goal.";
 }
@@ -754,28 +750,39 @@ void program23()
             counter++;
         }
         prev = curr;
-    } while (curr != 0);
+    } 
+    while (curr != 0);
     std::cout << "You changed znak " << counter << " times";
 }
 
 void program24()
 {
     srand((int)time(NULL));
-    int i, r;
-    double s1;
-    for (int j = 1; j <= 3; j++)
+    int i;
+    double s1 = 0, s2 = 0, s3 = 0;
+    for (i = 0; i < 10; i++)
     {
-        s1 = 0;
-        for (i = 0; i < 10; i++)
-        {
-            r = rand()%10;
-            std::cout << r << " ";
-            s1 = s1 + r;
-        }
-        s1 = s1 / 10.0;
-        std::cout << "\nAvg in " << j << " seq = " << s1;
-        std::cout << "\n";
+        std::cout << rand() << " ";
+        s1 = s1 + rand();
     }
+    s1 = s1 / 10.0;
+    std::cout << "\nAvg in first seq = " << s1;
+    std::cout << "\n";
+    for (i = 0; i < 10; i++)
+    {
+        std::cout << rand() << " ";
+        s2 = s2 + rand();
+    }
+    s2 = s2 / 10.0;
+    std::cout << "\nAvg in second seq = " << s2;
+    std::cout << "\n";
+    for (i = 0; i < 10; i++)
+    {
+        std::cout << rand() << " ";
+        s3 = s3 + rand();
+    }
+    s3 = s3 / 10.0;
+    std::cout << "\nAvg in third seq = " << s3;
 }
 
 void program25()
@@ -788,12 +795,23 @@ void program25()
         std::cout << "Please enter valid number.";
         return;
     }
-    for (int i = 100; i <= 999; i++)
+    for (int i = 100; i <= 999 ; i++)
     {
         int a, b, c;
         a = i / 100;
         b = i / 10 % 10;
         c = i % 10;
+        if (a + b + c < n)
+        {
+            std::cout << "\n" << i;
+        }
+    }
+    for (int i = -999; i <= -100; i++)
+    {
+        int a, b, c;
+        a = abs(i) / 100;
+        b = abs(i) / 10 % 10;
+        c = abs(i) % 10;
         if (a + b + c < n)
         {
             std::cout << "\n" << i;
@@ -992,13 +1010,257 @@ void program30()
         std::cout << "\n";
     }
     std::cout << "\n";
-    for (int i = 0; i < 2*n; i++)
+    for (int i = 0; i < 2*n - 1; i++)
     {
-        for (int j = 0; j < 2*n; j++)
+        for (int j = 0; j < 2*n - 1; j++)
         {
+            if (i + j < n - 1 || i + j >= 3 * n - 2 || j > i + n - 1 || i > j + n - 1)
+            {
+                std::cout << " ";
+            }
+            else
+            {
+                std::cout << "*";
+            }
         }
         std::cout << "\n";
     }
+}
+
+void program31()
+{
+    int a, a1, b, c, n;
+    std::cout << "Enter start hours: ";
+    std::cin >> a;
+    std::cout << "Enter start minutes: ";
+    std::cin >> a1;
+    std::cout << "Enter time of one lecture: ";
+    std::cin >> b;
+    std::cout << "Enter break time: ";
+    std::cin >> c;
+    std::cout << "Enter amount of lessons: ";
+    std::cin >> n;
+    if (a < 0 || a1 < 0 || b < 0 || c < 0 || n < 0)
+    {
+        std::cout << "Input error.";
+        return;
+    }
+    for (int i = 0; i < n; i++)
+    {
+        int r = (a * 60 + a1) + (b * i) + (c * i);
+        int s1, s2, em, eh;
+        s1 = r;
+        s2 = s1 + b;
+        eh = s2 / 60;
+        em = s2 % 60;
+        s1 = r / 60;
+        s2 = r % 60;
+        if (em < 10)
+        {
+            std::cout << i + 1 << "st lecture: " << s1 << ':' << s2 << " - " << eh << ":0" << em << '\n';
+        }
+        else if (s2 < 10)
+        {
+            std::cout << i + 1 << "st lecture: " << s1 << ":0" << s2 << " - " << eh << ':' << em << '\n';
+        }
+        else
+        {
+            std::cout << i + 1 << "st lecture: " << s1 << ':' << s2 << " - " << eh << ':' << em << '\n';
+        }
+    }
+}
+
+void program32()
+{
+    std::cout << "Enter your number: ";
+    int n;
+    std::cin >> n;
+    if (n <= 0)
+    {
+        std::cout << "Number should be natural.";
+        return;
+    }
+    for (int i = 2; i < n; i++)
+    {
+        bool flag1 = true;
+        if (i != 2)
+        {
+            for (int j = i - 1; j >= 2; j--)
+            {
+                if (i % j == 0)
+                {
+                    flag1 = false;
+                    break;
+                }
+            }
+            if (flag1 == false)
+            {
+                continue;
+            }
+        }
+        if (flag1)
+        {
+            std::cout << i << '\n';
+        }
+    }
+}
+
+void program33()
+{
+    int n;
+    double x;
+    double s = 0;
+    std::cout << "Enter N: ";
+    std::cin >> n;
+    if (n <= 0)
+    {
+        std::cout << "N should be natural.";
+        return;
+    }
+    std::cout << "Enter X: ";
+    std::cin >> x;
+    for (int i = 1; i < n + 1; i++)
+    {
+        long f = 1;
+        for (int j = 1; j <= 2*i - 1; j++)
+        {
+            f *= j;
+        }
+        if (i % 2 != 0)
+        {
+            s += pow(x, (2 * n - 1)) / f;
+        }
+        else
+        {
+            s -= pow(x, (2 * n - 1)) / f;
+        }
+        std::cout << "s = " << s << '\n';
+    }
+}
+
+void program34()
+{
+    double a, b, x, y, n;
+    std::cout << "Enter amount of numbers in Fibonacchi sequence: ";
+    std::cin >> n;;
+    if (n <= 0)
+    {
+        std::cout << "Amount should be natural.";
+    }
+    a = 1;
+    b = 1;
+    if (n == 2)
+    {
+        std::cout << a << '\n';
+        std::cout << b;
+    }
+    else if (n == 1)
+    {
+        std::cout << a;
+    }
+    std::cout << a << '\n';
+    std::cout << b << '\n';
+    while (n != 2)
+    {
+        x = a + b;
+        std::cout << x << '\n';
+        b = x - b;
+        a = x;
+        n--;
+    }
+}
+
+void program35()
+{
+    int n = rand() % 1000 + 1;
+    bool flag = false;
+    std::cout << "Try guessing a random number between 1 and a 1000! " << '\n';
+    for (int i = 0; i < 10; i++)
+    {
+        int a;
+        std::cin >> a;
+        if (a == n)
+        {
+            std::cout << "Congratulations, you guessed the number correct! The number was: " << n << '\n';
+            flag = true;
+            break;
+        }
+        if (a != n)
+        {
+            if (a < n)
+            {
+                std::cout << "You didn't guessed the number, it's higher than the one you entered. You have " << 10 - (i + 1) << " tries left!" << '\n';
+            }
+            if (a > n)
+            {
+                std::cout << "You didn't guessed the number, it's lower than the one you entered. You have " << 10 - (i + 1) << " tries left!" << '\n';
+            }
+        }
+    }
+    if (flag == false)
+    {
+        std::cout << "Oops, you ran out of tries! Wanna try again? :)";
+    }
+}
+
+void program36()
+{
+    srand((int)time(NULL));
+    int counter = 0;
+    std::cout << "Try to solve 10 equations from multiplication table!" << '\n';
+    clock_t start, end;
+    start = clock();
+    for (int i = 0; i < 10; i++)
+    {
+        int n = rand() % 10 + 1;
+        int r = rand() % 10 + 1;
+        std::cout << n << '*' << r << " = ?" << '\n';
+        int a;
+        std::cin >> a;
+        if (a == n * r)
+        {
+            counter++;
+        }
+    }
+    if (counter == 10)
+    {
+        std::cout << "Perfect!" << '\n';
+    }
+    else if (counter == 9)
+    {
+        std::cout << "Good!" << '\n';
+    }
+    else if (counter > 7)
+    {
+        std::cout << "Fine!" << '\n';
+    }
+    else
+    {
+        std::cout << "Failed." << '\n';
+    }
+    end = clock();
+    double dblTime = ((double)(end - start)) / CLOCKS_PER_SEC;
+    std::cout << "Amount of correct equations: " << counter << '\n';
+    std::cout << "Time taken: " << dblTime;
+}
+
+void program37()
+{
+    int a;
+    std::cout << "Convert arabic number to roman, enter your number: ";
+    std::cin >> a;
+    if (a >= 3999 || a <= 0)
+    {
+        std::cout << "Number should be in range of [1, 3999].";
+        return;
+    }
+    std::string ans;
+    std::string M[] = { "","M","MM","MMM" };
+    std::string C[] = { "","C","CC","CCC","CD","D","DC","DCC","DCCC","CM" };
+    std::string X[] = { "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC" };
+    std::string I[] = { "","I","II","III","IV","V","VI","VII","VIII","IX" };
+    ans = M[a / 1000] + C[(a % 1000) / 100] + X[(a % 100) / 10] + I[(a % 10)];
+    std::cout << ans;
 }
 
 int main()
@@ -1033,9 +1295,17 @@ int main()
     //   program27();
     //   program28();
     //   program29();
-       program30();
+    //   program30();
     //   program31();
     //   program32();
+    //   program33();
+    //   program34();
+    //   program35();
+    //   program36();
+    //   program37();
+    //   program38();
+    //   program39();
+    //   program40();
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
