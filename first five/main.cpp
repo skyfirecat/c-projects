@@ -1263,6 +1263,47 @@ void program37()
     std::cout << ans;
 }
 
+void program38()
+{
+    for (int i = 1; i <= 10; i++)
+    {
+        for (int j = 1; j <= 10; j++)
+        {
+            if (i * j < 10)
+            {
+                std::cout << " " << i * j << "  ";
+            }
+            else
+            {
+                std::cout << i * j << "  ";
+            }
+        }
+        std::cout << "\n";
+    }
+}
+
+void program39()
+{
+    double k;
+    std::cout << "Enter your number: ";
+    std::cin >> k;
+    std::cout << "Miles           Kilometres" << "\n";
+    for (double i = 0.0001; i <= k + 0.0001; i += 0.0001)
+    {
+        float a, b;
+        a = i;
+        b = a / 0.6024;
+        if (fmod(a, 1) == 0)
+        {
+            std::cout << b << "                  " << a << "\n";
+        }
+        else if (fmod(b, 1) == 0)
+        {
+            std::cout << b << "                  " << a << "\n";
+        }
+    }
+}
+
 int main()
 {
     bool answer;
