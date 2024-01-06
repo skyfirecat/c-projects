@@ -1135,11 +1135,11 @@ void program33()
         }
         if (i % 2 != 0)
         {
-            s += pow(x, (2 * n - 1)) / f;
+            s += pow(x, (2 * i - 1)) / f;
         }
         else
         {
-            s -= pow(x, (2 * n - 1)) / f;
+            s -= pow(x, (2 * i - 1)) / f;
         }
         std::cout << "s = " << s << '\n';
     }
@@ -1291,24 +1291,34 @@ void program38()
 
 void program39()
 {
-    double k;
     std::cout << "Enter your number: ";
+    int k;
     std::cin >> k;
-    std::cout << "Miles           Kilometres" << "\n";
-    for (double i = 0.0001; i <= k + 0.0001; i += 0.0001)
+    if (k <= 0)
     {
-        float a, b;
-        a = i;
-        b = a / 0.6024;
-        if (fmod(a, 1) == 0)
-        {
-            std::cout << b << "                  " << a << "\n";
-        }
-        else if (fmod(b, 1) == 0)
-        {
-            std::cout << b << "                  " << a << "\n";
+        std::cout << "Number should be natural.";
+        break;
+    }
+
+    int miles = 0;
+
+    std::cout << "| Miles | Km |";
+
+    for (int i = 1; i <= k; i++)
+    {
+        if (i / 1.6093 < miles)
+            std::cout << std::setprecision(4) << "\n " << i / 1.6093 << "\t " << i;
+        else {
+            std::cout << std::setprecision(4) << "\n " << miles << "\t "<< miles * 1.6093;
+            if (i <= k)
+            {
+                std::cout << std::setprecision(4) << "\n " << i / 1.6093 << "\t " << i;
+                miles++;
+            }
         }
     }
+
+    std::cout << "\n";
 }
 
 int main()
@@ -1353,7 +1363,6 @@ int main()
     //   program37();
     //   program38();
     //   program39();
-    //   program40();
 
     std::cout << "\nOne more? (1 - yes, 0 - no): ";
     std::cin >> answer;
