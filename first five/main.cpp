@@ -859,14 +859,16 @@ void program27()
     }
     for (int i = min; i > 0; i--)
     {
+        if (a % i == 0 && b % i == 0)
+        {
         if (a == b)
         {
             std::cout << a << "/" << b << "=" << 1;
-            break;
         }
-        else if (a % i == 0 && b % i == 0)
+        else
         {
             std::cout << a << "/" << b << "=" << a / i << "/" << b / i;
+        }
             break;
         }
     }
